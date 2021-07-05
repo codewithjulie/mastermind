@@ -1,22 +1,23 @@
 require_relative 'player'
+require_relative 'code'
 
 class Mastermind
 
-  COLORS = ["O", "W", "B", "R", "G", "Y", "o", "w", "b", "r", "g", "y"]
+  attr_accessor :code
 
   def initialize
     @player = Player.new
-    @code = Code.new("BGYB")
+    @code = Code.new(["B", "G", "Y", "G"])
   end
 
-  def valid_peg?(peg)
-    COLORS.include?(peg)
+  def get_player_guess
+    @player.get_guess
   end
 
-  def valid_guess?
-    @player.get_guess.split("").all? {|peg| valid_peg?(peg)}
+  def display
+    puts "Exact matches: "
+    puts "Near matches: "
+    puts "-----------------------"
   end
-
-
 
 end
