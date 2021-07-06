@@ -8,14 +8,15 @@ class Mastermind
   def initialize
     @player = Player.new
     @code = Code.new(["B", "G", "Y", "G"])
+    @player_guess = []
   end
 
   def get_player_guess
-    Code.new(@player.get_guess.split(""))
+    @player_guess = Code.new(@player.get_guess.split(""))
   end
 
   def display
-    puts get_player_guess
+    puts @player_guess
     puts "Exact matches: "
     puts "Near matches: "
     puts "-----------------------"
