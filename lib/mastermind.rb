@@ -11,10 +11,11 @@ class Mastermind
   end
 
   def get_player_guess
-    @player.get_guess
+    Code.new(@player.get_guess.split(""))
   end
 
   def display
+    puts get_player_guess
     puts "Exact matches: "
     puts "Near matches: "
     puts "-----------------------"
