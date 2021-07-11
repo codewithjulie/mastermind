@@ -16,9 +16,10 @@ class Code
   end
 
   def initialize(pegs)
-    if Code.valid_code?(pegs)
+    if Code.valid_code?(pegs) && pegs.size == 4
       @code = pegs.map(&:upcase)
     else
+      puts "Please choose four pegs from Orange, Yellow, Blue, Green, Red, or White"
       @code = []
     end
   end
