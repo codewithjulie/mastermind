@@ -1,5 +1,8 @@
 require_relative 'mastermind'
 
 game = Mastermind.new
-puts game.code
-game.display
+
+until game.won?
+  game.display
+  game.get_player_guess
+end
