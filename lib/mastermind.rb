@@ -39,13 +39,7 @@ class Mastermind
   end
 
   def get_exact_matches
-    count = 0
-    @code.code.size.times do |index|
-      if @code.code[index] == @player_guess.code[index]
-        count += 1
-      end
-    end
-    count
+    (0...@code.code.size).count {|index| @code[index] == @player_guess[index]}
   end
 
 end

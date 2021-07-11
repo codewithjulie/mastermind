@@ -28,5 +28,9 @@ class Code
     @code.join(" ")
   end
 
+  def [](index)
+    @code[index]
+  end
+
 
 end
