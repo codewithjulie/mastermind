@@ -21,7 +21,7 @@ class Mastermind
 
   def display
     puts @player_guess
-    puts "Exact matches: "
+    puts "Exact matches: #{get_exact_matches}"
     puts "Near matches: "
     puts "-----------------------"
   end
@@ -36,6 +36,16 @@ class Mastermind
 
   def game_over?
     won? || lost?
+  end
+
+  def get_exact_matches
+    count = 0
+    @code.code.size.times do |index|
+      if @code.code[index] == @player_guess.code[index]
+        count += 1
+      end
+    end
+    count
   end
 
 end
