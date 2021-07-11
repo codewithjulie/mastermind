@@ -8,7 +8,7 @@ class Mastermind
   def initialize
     @player = Player.new
     @code = Code.new(["B", "G", "Y", "G"])
-    @player_guess = []
+    @player_guess = Code.new([])
   end
 
   def get_player_guess
@@ -20,6 +20,10 @@ class Mastermind
     puts "Exact matches: "
     puts "Near matches: "
     puts "-----------------------"
+  end
+
+  def won?
+    @player_guess.code == @code.code
   end
 
 end
