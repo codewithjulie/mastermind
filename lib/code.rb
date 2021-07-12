@@ -3,12 +3,12 @@ class Code
   attr_accessor :code
 
   COLORS = {
-    "O" => "orange",
-    "Y" => "yellow",
-    "B" => "blue",
-    "G" => "green",
-    "R" => "red",
-    "W" => "white",
+    "O" => :orange,
+    "Y" => :yellow,
+    "B" => :blue,
+    "G" => :green,
+    "R" => :red,
+    "W" => :white,
   }
 
   def self.valid_code?(pegs)
@@ -25,12 +25,19 @@ class Code
   end
 
   def to_s
-    @code.join(" ")
+    @code.map { |peg| "\u2b24".colorize(COLORS[peg])}.join("   ")
   end
 
   def [](index)
     @code[index]
   end
 
+  def get_hash
+    hash = Hash.new(0)
+    @code.each do |peg|
+      hash[peg] += 1
+    end
+    hash
+  end
 
 end

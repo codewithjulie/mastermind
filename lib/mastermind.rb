@@ -9,7 +9,7 @@ class Mastermind
     @player = Player.new
     @code = Code.new(["B", "G", "Y", "G"])
     @player_guess = Code.new([])
-    @guesses_remaining = 3
+    @guesses_remaining = 12
   end
 
   def get_player_guess
@@ -20,9 +20,10 @@ class Mastermind
   end
 
   def display
-    puts @player_guess
-    puts "Exact matches: #{get_exact_matches}"
-    puts "Near matches: "
+    print @player_guess
+    print "   Exact matches: #{get_exact_matches}"
+    print "   Near matches: #{get_near_matches}"
+    puts "    Number of guesses remaining: #{@guesses_remaining}"
     puts "-----------------------"
   end
 
@@ -40,6 +41,21 @@ class Mastermind
 
   def get_exact_matches
     (0...@code.code.size).count {|index| @code[index] == @player_guess[index]}
+  end
+
+  def get_near_matches
+    code_hash = @code.get_hash
+    player_hash = @player_guess.get_hash
+
+    count = 0
+
+    code_hash.each do |color, quantity|
+      if player_hash[color] > 0 
+        count += [player_hash[color], quantity].min
+      end
+    end
+    
+    count -= get_exact_matches
   end
 
 end
