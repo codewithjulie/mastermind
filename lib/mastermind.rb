@@ -20,11 +20,21 @@ class Mastermind
   end
 
   def display
-    print @player_guess
-    print "   Exact matches: #{get_exact_matches}"
-    print "   Near matches: #{get_near_matches}"
-    puts "    Number of guesses remaining: #{@guesses_remaining}"
-    puts "-----------------------"
+    if game_over?
+      if won?
+        puts "Congratulations! You won!"
+        print @player_guess
+      elsif lost?
+        puts "Better luck next time!"
+        puts @code
+      end
+    else
+      print @player_guess
+      print "   Exact matches: #{get_exact_matches}"
+      print "   Near matches: #{get_near_matches}"
+      puts "    Number of guesses remaining: #{@guesses_remaining}"
+      puts "-----------------------"
+    end
   end
 
   def won?
