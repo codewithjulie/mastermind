@@ -3,23 +3,28 @@ class Code
   attr_accessor :code
 
   COLORS = {
+    "R" => :red,
     "O" => :orange,
     "Y" => :yellow,
-    "B" => :blue,
     "G" => :green,
-    "R" => :red,
-    "W" => :white,
+    "B" => :blue,
+    "P" => :violet,
   }
 
   def self.valid_code?(pegs)
     pegs.all? {|peg| COLORS.include?(peg.upcase)}
   end
 
+  def self.get_random_code(length)
+    pegs = Array.new(length) { Code::COLORS.keys.sample }
+    Code.new(pegs)
+  end
+
   def initialize(pegs)
     if Code.valid_code?(pegs) && pegs.size == 4
       @code = pegs.map(&:upcase)
     else
-      puts "Please choose four pegs from Orange, Yellow, Blue, Green, Red, or White"
+      puts "Please choose four pegs from ROYGBP"
       @code = []
     end
   end

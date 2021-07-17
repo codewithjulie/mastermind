@@ -7,7 +7,7 @@ class Mastermind
 
   def initialize
     @player = Player.new
-    @code = Code.new(["B", "G", "Y", "G"])
+    @code = Code.get_random_code(4)
     @player_guess = Code.new([])
     @guesses_remaining = 12
   end
